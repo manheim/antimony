@@ -1,13 +1,13 @@
 module Antimony
   class Formula
-    LOG_PARENT_PATH = Dir.pwd + "/log"
+    LOG_PARENT_PATH = Dir.pwd + '/log'
     LOG_PATH = "#{LOG_PARENT_PATH}/formulas"
-    FORMULAS_PATH = Dir.pwd + "/formulas"
+    FORMULAS_PATH = Dir.pwd + '/formulas'
 
     attr_accessor :inputs, :outputs, :formula_log
 
     def initialize(name, inputs = {})
-      ($:.unshift FORMULAS_PATH) unless ($:.include? FORMULAS_PATH)
+      ($LOAD_PATH.unshift FORMULAS_PATH) unless $LOAD_PATH.include? FORMULAS_PATH
 
       @inputs = indifferent_hash(inputs)
       @outputs = {}
@@ -16,9 +16,7 @@ module Antimony
 
       helper_path = "#{FORMULAS_PATH}/formula_helper.rb"
 
-      if File.exist?(helper_path)
-        eval File.read(helper_path)
-      end
+      eval File.read(helper_path) if File.exist?(helper_path)
 
       @formula = File.read("#{FORMULAS_PATH}/#{name}.rb")
     end
@@ -36,19 +34,18 @@ module Antimony
     end
 
     private
+
     def init_log(name)
       Dir.mkdir LOG_PARENT_PATH unless Dir.exist? LOG_PARENT_PATH
       Dir.mkdir LOG_PATH unless Dir.exist? LOG_PATH
       @log = Logging.logger[name]
-      layout = Logging.layouts.pattern(:pattern => "%m\n")
-      @log.add_appenders(Logging.appenders.file("#{LOG_PATH}/#{name}.log", {
-          truncate: true,
-          layout: layout
-      }))
+      layout = Logging.layouts.pattern(pattern: "%m\n")
+      @log.add_appenders(Logging.appenders.file("#{LOG_PATH}/#{name}.log",           truncate: true,
+                                                                                     layout: layout))
     end
 
     def method_missing(name, *args, &block)
-      raise 'No active connection!' unless @connection
+      fail 'No active connection!' unless @connection
       @connection.send(name, *args, &block)
     end
 
@@ -61,6 +58,5 @@ module Antimony
         end
       end
     end
-
   end
 end

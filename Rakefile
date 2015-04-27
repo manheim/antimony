@@ -3,12 +3,11 @@ require 'rubocop/rake_task'
 
 task default: ['spec:unit', 'rubocop']
 namespace :spec do
-
   RSpec::Core::RakeTask.new(:unit) do |t|
-    t.pattern = Dir['spec/**/*_spec.rb'].reject{ |f| f['example_spec.rb'] }
+    t.pattern = Dir['spec/**/*_spec.rb'].reject { |f| f['example_spec.rb'] }
   end
 
-  task :all => [:unit, :integration]
+  task all: [:unit, :integration]
 end
 
 task :pry do

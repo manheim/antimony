@@ -67,5 +67,4 @@ describe Antimony::Session, :session do
       expect(@session.screen_text).to eq(EXPECT1)
     end
   end
-
 end

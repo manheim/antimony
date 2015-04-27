@@ -1,13 +1,11 @@
 module Antimony
-
   class Session
-
     def initialize(host)
       @cursor_position = 0
       @screen_text = blank_screen
       @session_log = []
 
-      @connection = Net::Telnet::new({ 'Host' => host, 'Timeout' => 10})
+      @connection = Net::Telnet.new('Host' => host, 'Timeout' => 10)
 
       update_screen
     end
@@ -48,7 +46,7 @@ module Antimony
       txt = EMPTY.clone
       @session_log.each_with_index do |entry, i|
         txt += LOG_SEPARATOR + ENTER
-        txt += "#{i.to_s}: #{ENTER}"
+        txt += "#{i}: #{ENTER}"
         txt += entry + ENTER
       end
       txt += LOG_SEPARATOR
@@ -116,9 +114,7 @@ module Antimony
     end
 
     def blank_screen
-      (1..1920).to_a.map {|i| SPACE}
+      (1..1920).to_a.map { |_i| SPACE }
     end
   end
-
 end
-
