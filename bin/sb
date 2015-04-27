@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+lib_path = File.expand_path('../../lib'.freeze, __FILE__)
+($:.unshift lib_path) unless ($:.include? lib_path)
+
+require 'thor'
+require 'logging'
+require 'antimony'
+
+class AntimonyCLI < Thor
+
+  desc 'formula FILE [--inputs my_input:hello other_input:goodbye]', 'run the specified formula'
+  method_option :inputs, type: :hash
+  def formula(file)
+    inputs = options[:inputs] || {}
+    formula = Antimony::Formula.new(file, inputs)
+    formula.run
+  end
+
+  default_task :formula
+end
+
+AntimonyCLI.start(ARGV)

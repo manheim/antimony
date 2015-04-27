@@ -1,0 +1,14 @@
+*.gem
+*.rbc
+.bundle
+coverage
+InstalledFiles
+pkg
+rdoc
+spec/reports
+log/formulas/*.log
+.idea
+*.iml
+.yardoc
+_yardoc
+doc/
