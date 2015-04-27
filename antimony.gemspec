@@ -9,6 +9,7 @@
     s.files       = ["lib/antimony.rb", "lib/antimony/formula.rb", "lib/antimony/session.rb", "lib/antimony/config.rb"]
     s.bindir      = 'bin'
     s.executables << 'sb'
+    s.license     = 'MIT'
 
     s.add_runtime_dependency 'logging'
     s.add_runtime_dependency 'thor'
