@@ -12,4 +12,7 @@
 
     s.add_runtime_dependency 'logging'
     s.add_runtime_dependency 'thor'
+    s.add_development_dependency('rake', '~> 10.3')
+    s.add_development_dependency('rspec', '2.14.1')
+    s.add_development_dependency('pry', '~> 0.10.1')
   end

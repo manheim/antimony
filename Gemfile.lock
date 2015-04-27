@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    antimony (0.0.9)
+      logging
+      thor
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,8 +45,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  antimony!
   logging
-  pry
-  rake
+  pry (~> 0.10.1)
+  rake (~> 10.3)
   rspec (= 2.14.1)
   thor
