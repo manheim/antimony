@@ -16,13 +16,13 @@ module Antimony
 
       helper_path = "#{FORMULAS_PATH}/formula_helper.rb"
 
-      eval File.read(helper_path) if File.exist?(helper_path)
+      eval File.read(helper_path) if File.exist?(helper_path) # rubocop:disable Lint/Eval
 
       @formula = File.read("#{FORMULAS_PATH}/#{name}.rb")
     end
 
     def run
-      eval(@formula)
+      eval(@formula) # rubocop:disable Lint/Eval
     end
 
     def session(host)

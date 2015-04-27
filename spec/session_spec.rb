@@ -23,7 +23,7 @@ describe Antimony::Session, :session do
       expect(Net::Telnet).to receive(:new)
         .with('Host' => '', 'Timeout' => 10)
         .and_return(@telnet)
-      session = Antimony::Session.new('')
+      Antimony::Session.new('')
     end
   end
 
