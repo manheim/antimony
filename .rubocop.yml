@@ -1,0 +1,3 @@
+# The default RuboCop configuration can be found at
+# https://github.com/bbatsov/rubocop/tree/master/config
+inherit_from: .rubocop_todo.yml

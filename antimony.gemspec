@@ -16,4 +16,5 @@
     s.add_development_dependency('rake', '~> 10.3')
     s.add_development_dependency('rspec', '2.14.1')
     s.add_development_dependency('pry', '~> 0.10.1')
+    s.add_development_dependency('rubocop', '0.30.0')
   end
