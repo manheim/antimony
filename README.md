@@ -27,17 +27,29 @@ Simply provide the filename and any inputs to `Antimony::Formula.new` and call `
 @formula.outputs # {}
 ```
 
-#### Example Formula
-Example formula for a login workflow
+#### Examples
+Example formula (login.rb) for a login workflow
 
 ```ruby
 session 'hostname.com' do
-  send_keys 'USERNAME'
-  send_keys 'PASSWORD'
-
+  send_keys inputs[:username]
+  send_keys inputs[:password]
   enter
-
   @outputs[:success] = screen_text.include? 'SUCCESSFUL LOGIN'
+end
+```
+
+Example RSpec test calling the formula
+```ruby
+context 'Given I am Admin with correct password ' do
+  before do
+   @login_creds = {username: 'admin', password: 'password'}
+  end
+  it 'should be able to login successfully'
+      login_formula = Antimony::Formula.new('login', @login_creds)
+      login_formula.run
+      expect(login_formula.outputs[:success]).to be_true
+  end
 end
 ```
 
