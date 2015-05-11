@@ -72,8 +72,8 @@ log(message)                    # log a message to the session log
 log_screen                      # log the current screen to the session log
 ```
 
-### Examples
-#### Example formula (login.rb) for a login workflow
+## Examples
+### Example formula (login.rb) for a login workflow
 ```ruby
 session 'hostname.com' do
   send_keys 'USERNAME'
@@ -82,7 +82,7 @@ session 'hostname.com' do
   @outputs[:success] = screen_text.include? 'SUCCESSFUL LOGIN'
 end
 ```
-#### Example of modularizing use of formulas (note: login.rb formula is pulled into this one - lookup.rb)
+### Example of modularizing use of formulas (note: login.rb formula is pulled into this one - lookup.rb)
 ```ruby
 require 'login'
 session 'hostname.com' do
@@ -97,7 +97,7 @@ session 'hostname.com' do
   outputs[:success] = screen_text.include?(inputs[:status])
 end
 ```
-#### Example RSpec test calling the formula
+### Example RSpec test calling the formula
 ```ruby
 context 'Given I am an Admin And I have a Completed work order' do
   it 'When I lookup the work order Then the completed status is displayed'
