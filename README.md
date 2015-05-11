@@ -26,21 +26,6 @@ Simply provide the filename and any inputs to `Antimony::Formula.new` and call `
 @formula.inputs # {}
 @formula.outputs # {}
 ```
-
-#### Example Formula
-Example formula for a login workflow
-
-```ruby
-session 'hostname.com' do
-  send_keys 'USERNAME'
-  send_keys 'PASSWORD'
-
-  enter
-
-  @outputs[:success] = screen_text.include? 'SUCCESSFUL LOGIN'
-end
-```
-
 ## Inputs
 
 Formulas expose `@inputs` which contains the hash provided during initialization. This hash can be accessed outside of a formula via the `inputs` method on the formula object.
@@ -85,4 +70,41 @@ printable_screen_text           # get pretty-print version of screen text
 session_log                     # get the log of the session
 log(message)                    # log a message to the session log
 log_screen                      # log the current screen to the session log
+```
+
+#### Examples
+Example formula (login.rb) for a login workflow
+```ruby
+session 'hostname.com' do
+  send_keys 'USERNAME'
+  send_keys 'PASSWORD'
+  enter
+  @outputs[:success] = screen_text.include? 'SUCCESSFUL LOGIN'
+end
+```
+Example of modularizing use of formulas (note: login.rb formula is pulled into this one - lookup.rb)
+```ruby
+require 'login'
+session 'hostname.com' do
+  login #login formula is invoked/run
+  send_keys 'MENU1'
+  enter
+  send_keys '02'
+  enter
+  send_keys inputs[:work_order_number]
+  enter
+  f5
+  outputs[:success] = screen_text.include?(inputs[:status])
+end
+
+```
+Example RSpec test calling the formula
+```ruby
+context 'Given I am an Admin And I have a Completed work order' do
+  it 'When I lookup the work order Then the completed status is displayed'
+      lookup_formula = Antimony::Formula.new('lookup', {work_order_number: '12345', status: 'COMPLETED'})
+      lookup_formula.run
+      expect(lookup_formula.outputs[:success]).to be_true
+  end
+end
 ```
