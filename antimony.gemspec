@@ -5,7 +5,7 @@
     s.description = 'DSL for writing scripts to drive TN5250 green-screen applications'
     s.authors     = ['Andrew Terris', 'Adrienne Hisbrook', 'Lesley Dennison']
     s.email       = ''
-    s.homepage    = 'http://github.ove.local/Auction2/antimony'
+    s.homepage    = 'https://github.com/manheim/antimony'
     s.files       = ['lib/antimony.rb', 'lib/antimony/formula.rb', 'lib/antimony/session.rb', 'lib/antimony/config.rb']
     s.bindir      = 'bin'
     s.executables << 'sb'
