@@ -3,7 +3,7 @@
     s.version     = '0.0.9'
     s.summary     = 'TN5250/AS400 automation'
     s.description = 'DSL for writing scripts to drive TN5250 green-screen applications'
-    s.authors     = ['Andrew Terris', 'Adrienne Hisbrook', 'Lesley Dennison']
+    s.authors     = ['Andrew Terris', 'Adrienne Hisbrook', 'Lesley Dennison', 'Ryan Rosenblum']
     s.email       = ''
     s.homepage    = 'https://github.com/manheim/antimony'
     s.files       = ['lib/antimony.rb', 'lib/antimony/formula.rb', 'lib/antimony/session.rb', 'lib/antimony/config.rb']
