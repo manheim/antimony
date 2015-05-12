@@ -7,6 +7,7 @@ Bundler.require(:default)
 
 # Misc
 require 'net/telnet'
+require 'logging'
 
 # Gem
 require "#{lib_path}/config.rb"
