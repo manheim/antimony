@@ -107,3 +107,9 @@ context 'Given I am an Admin And I have a Completed work order' do
   end
 end
 ```
+
+## Authors
+* Andrew Terris https://github.com/aterris
+* Adrienne Hisbrook https://github.com/ahisbrook
+* Lesley Dennison <ldennison@thoughtworks.com>
+* Ryan Rosenblum <Ryan.Rosenblum@Manheim.com>
