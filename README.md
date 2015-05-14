@@ -112,4 +112,4 @@ end
 * Andrew Terris https://github.com/aterris
 * Adrienne Hisbrook https://github.com/ahisbrook
 * Lesley Dennison <ldennison@thoughtworks.com>
-* Ryan Rosenblum <Ryan.Rosenblum@Manheim.com>
+* Ryan Rosenblum https://github.com/rrosenblum
