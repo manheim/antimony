@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    antimony (0.0.9)
-      logging
-      thor
+    antimony (0.1.0)
+      logging (~> 0)
+      thor (~> 0)
 
 GEM
   remote: https://rubygems.org/
@@ -14,12 +14,12 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     ffi (1.9.6-java)
-    little-plugger (1.1.3)
-    logging (1.8.2)
-      little-plugger (>= 1.1.3)
-      multi_json (>= 1.8.4)
+    flexmock (1.3.3)
+    lockfile (2.1.3)
+    logging (0.9.8)
+      flexmock (>= 0.8.2)
+      lockfile (>= 1.4.3)
     method_source (0.8.2)
-    multi_json (1.10.1)
     parser (2.2.2.2)
       ast (>= 1.1, < 3.0)
     powerpack (0.1.1)
