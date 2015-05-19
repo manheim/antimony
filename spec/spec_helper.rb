@@ -1,3 +1,8 @@
+if ENV['COVERAGE'] == 'true'
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 lib_path = File.expand_path('../../lib', __FILE__)
 require "#{lib_path}/antimony"
 

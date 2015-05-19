@@ -19,3 +19,9 @@ desc 'Run RuboCop'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.options = ['--display-cop-names']
 end
+
+desc 'Run RSpec with code coverage'
+task :coverage do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['spec:unit'].invoke
+end

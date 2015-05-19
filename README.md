@@ -4,6 +4,7 @@ antimony
 [![Gem Version](http://img.shields.io/gem/v/antimony.svg)](https://rubygems.org/gems/antimony)
 [![Build Status](http://img.shields.io/travis/manheim/antimony.svg)](https://travis-ci.org/manheim/antimony)
 [![Code Climate](https://codeclimate.com/github/manheim/antimony/badges/gpa.svg)](https://codeclimate.com/github/manheim/antimony)
+[![Coverage Status](https://coveralls.io/repos/manheim/antimony/badge.svg)](https://coveralls.io/r/manheim/antimony)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
