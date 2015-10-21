@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'antimony'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.summary     = 'TN5250/AS400 automation'
   s.description = 'DSL for writing scripts to drive TN5250 green-screen applications'
   s.authors     = ['Andrew Terris', 'Adrienne Hisbrook', 'Lesley Dennison', 'Ryan Rosenblum']
