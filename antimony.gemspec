@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.executables << 'sb'
   s.license     = 'MIT'
 
-  s.add_runtime_dependency('logging', '~> 0')
+  s.add_runtime_dependency('logging', '~> 1.2')
   s.add_runtime_dependency('thor', '~> 0')
   s.add_development_dependency('rake', '~> 10.3')
   s.add_development_dependency('rspec', '~> 3.0')
