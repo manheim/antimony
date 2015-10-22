@@ -6,6 +6,8 @@
 
 ### Changes
 
+* Add and enforce the use of `UTF-8` encoding. ([@rrosenblum][])
+
 ### Bugs fixed
 
 

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 if ENV['COVERAGE'] == 'true'
   require 'coveralls'
   Coveralls.wear!

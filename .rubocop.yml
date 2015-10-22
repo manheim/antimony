@@ -15,3 +15,7 @@ Metrics/MethodLength:
 
 Style/Documentation:
   Enabled: false
+
+Style/Encoding:
+  AutoCorrectEncodingComment: '# encoding: UTF-8'
+  Enabled: true

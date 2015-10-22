@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Antimony
   class Session
     def initialize(host)

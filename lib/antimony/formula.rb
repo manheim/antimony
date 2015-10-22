@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Antimony
   class Formula
     LOG_PARENT_PATH = Dir.pwd + '/log'

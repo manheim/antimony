@@ -1,3 +1,4 @@
+# encoding: UTF-8
 Gem::Specification.new do |s|
   s.name        = 'antimony'
   s.version     = '0.1.1'

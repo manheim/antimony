@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # encoding 'ASCII-8bit'
 lib_path = File.expand_path('../antimony', __FILE__)
 ($LOAD_PATH.unshift lib_path) unless $LOAD_PATH.include? lib_path
