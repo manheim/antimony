@@ -83,7 +83,8 @@ module Antimony
     end
 
     def chunk
-      @chunk = @connection.waitfor RECEIVE_OPTS rescue nil
+      @chunk = @connection.waitfor RECEIVE_OPTS
+    rescue # rubocop:disable Lint/HandleExceptions
     end
 
     def cursor_position(esc)
