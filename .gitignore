@@ -12,3 +12,4 @@ log/formulas/*.log
 .yardoc
 _yardoc
 doc/
+Gemfile.lock
