@@ -1,6 +1,9 @@
 # The default RuboCop configuration can be found at
 # https://github.com/bbatsov/rubocop/tree/master/config
 
+AllCops:
+  DisplayCopNames: true
+
 Metrics/AbcSize:
   Max: 17
 
