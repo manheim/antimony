@@ -2,7 +2,7 @@
 module Antimony
   class Formula
     LOG_PARENT_PATH = Dir.pwd + '/log'
-    LOG_PATH = "#{LOG_PARENT_PATH}/formulas"
+    LOG_PATH = "#{LOG_PARENT_PATH}/formulas".freeze
     FORMULAS_PATH = Dir.pwd + '/formulas'
 
     attr_accessor :inputs, :outputs, :formula_log
@@ -46,7 +46,7 @@ module Antimony
     end
 
     def method_missing(name, *args, &block)
-      fail 'No active connection!' unless @connection
+      raise 'No active connection!' unless @connection
       @connection.send(name, *args, &block)
     end
 

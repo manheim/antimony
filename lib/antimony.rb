@@ -29,7 +29,7 @@ module Antimony
   end
 
   # Constants
-  ANSI_REGEX = /(\e\[.{1,2};?.{0,2}m|\e\[.{1}J|\e\[.{1,2}A|\e\[.{1,2}B|\e\[.{1,2}C|\e\[.{1,2}D|\e\[K|\e\[.{1,2};.{1,2}H|\e\[.{3}|.)/.freeze # rubocop:disable Metrics/LineLength
+  ANSI_REGEX = /(\e\[.{1,2};?.{0,2}m|\e\[.{1}J|\e\[.{1,2}A|\e\[.{1,2}B|\e\[.{1,2}C|\e\[.{1,2}D|\e\[K|\e\[.{1,2};.{1,2}H|\e\[.{3}|.)/ # rubocop:disable Metrics/LineLength
   SCREEN_SEPARATOR = '################################################################################'.freeze
   LOG_SEPARATOR    = '================================================================================'.freeze
 
@@ -45,7 +45,7 @@ module Antimony
 
   SEMICOLON = ';'.freeze
 
-  LINE = /.{80}/.freeze
+  LINE = /.{80}/
 
   class Session
     KEYBOARD_METHODS = {
@@ -80,7 +80,7 @@ module Antimony
       arrow_down: "\e[B".freeze,
       arrow_right: "\e[C".freeze,
       arrow_left: "\e[D".freeze
-    }
+    }.freeze
 
     KEYBOARD_METHODS.each do |key, val|
       define_method(key) { |count = 1| send_keys val, count, false }

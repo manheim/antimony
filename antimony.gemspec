@@ -10,12 +10,12 @@ Gem::Specification.new do |s|
   s.files       = ['lib/antimony.rb', 'lib/antimony/formula.rb', 'lib/antimony/session.rb', 'lib/antimony/config.rb']
   s.bindir      = 'bin'
   s.executables << 'sb'
-  s.license     = 'MIT'
+  s.license = 'MIT'
 
   s.add_runtime_dependency('logging', '~> 1.2')
   s.add_runtime_dependency('thor', '~> 0')
   s.add_development_dependency('rake', '~> 10.3')
   s.add_development_dependency('rspec', '~> 3.0')
   s.add_development_dependency('pry', '~> 0.10.1')
-  s.add_development_dependency('rubocop', '~> 0.34.0')
+  s.add_development_dependency('rubocop', '~> 0.37.0')
 end
