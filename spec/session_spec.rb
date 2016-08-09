@@ -4,27 +4,25 @@ require 'pry'
 
 STREAM1 = File.read File.expand_path("#{RESOURCES_DIR}/sample_stream_1.txt", __FILE__)
 
-EXPECT1 = File.read File.expand_path("#{RESOURCES_DIR}/sample_expect_1.txt", __FILE__)
-
 describe Antimony::Session, :session do
   before do
+    Antimony.show_output = false
+
     @telnet = double(Net::Telnet)
 
     allow(@telnet).to receive(:print)
 
     allow(Net::Telnet).to receive(:new).and_return(@telnet)
 
-    allow_any_instance_of(Antimony::Session).to receive(:receive_data).and_return(STREAM1)
-
-    @session = Antimony::Session.new('')
+    @session = Antimony::Session.new(url: 'as400.foo.com', timeout: 10)
   end
 
   describe '::new' do
     it 'should create Telnet session' do
       expect(Net::Telnet).to receive(:new)
-        .with('Host' => '', 'Timeout' => 10)
+        .with('Host' => 'as400.foo.com', 'Timeout' => 10)
         .and_return(@telnet)
-      Antimony::Session.new('')
+      Antimony::Session.new(url: 'as400.foo.com', timeout: 10)
     end
   end
 
@@ -35,10 +33,10 @@ describe Antimony::Session, :session do
     end
   end
 
-  describe '#send_keys' do
+  describe '#send_key' do
     it 'should send keys to terminal' do
       expect(@telnet).to receive(:print).with('boom!')
-      @session.send_keys 'boom!'
+      @session.send_key('boom!')
     end
   end
 
@@ -56,16 +54,4 @@ describe Antimony::Session, :session do
     end
   end
 
-  describe '#value_at' do
-    it 'should retrieve the value at row, column, length' do
-      value = @session.value_at(6, 17, 4)
-      expect(value).to eq('User')
-    end
-  end
-
-  describe 'private#parse_ansi' do
-    it 'should parse ansi into text' do
-      expect(@session.screen_text).to eq(EXPECT1)
-    end
-  end
 end
