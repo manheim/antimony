@@ -10,46 +10,69 @@ antimony
 
 Antimony is a DSL allowing developers to write automated workflows for TN5250 mainframe applications.
 
-## Formulas
+## Installation
 
-Formulas describe automated processes and are loaded from the `formulas` directory.
+Add this line to your Gemfile:
+```ruby
+gem 'antimony'
+```
+Then install the gem manually:
+```ruby 
+gem install antimony
+```
+or via Bundler:
+```ruby
+bundle install
+```
 
-Simply provide the filename and any inputs to `Antimony::Formula.new` and call `run`
+## Configuration
+Set options:
+```ruby
+Antimony.configure do |config|
+  config.path = 'path/to/your/host/configuration' # path to the dir containing your hosts.yml file (see below) 
+  config.show_output = true # screen will print to terminal (otherwise no automatic output)
+end
+```
+
+You can (optionally) define a YAML file of host data:
+
+(This file must be named hosts.yml)
+```yaml
+---
+host_1:
+    :url: 'host.foo.com'
+    username: 'username'
+    password: 'password'
+host_2:
+    :url: 'host.bar.com'
+    username: 'username'
+    password: 'password'
+```
 
 ## Usage
-
-#### Prepare Formula
+Initialize a session and send commands
 ```ruby
-@formula = Antimony::Formula.new('process_unit', { value: 'sample' })
+# Initialize the session
+@session = Antimony::Session.new(url: 'your_host_name', timeout: 10)
+# or, using hosts.yml config file
+@session = Antimony::Session.new(:host_1)
+
+# Send some commands
+@session.send_keys('your_username')
+@session.tab
+@session.send_keys('your_password')
+@session.enter
+
+# And finally close the session
+@session.close
 ```
-
-#### Run Formula
-```ruby
-@formula.run
-```
-
-#### Access inputs and outputs
-```ruby
-@formula.inputs # {}
-@formula.outputs # {}
-```
-## Inputs
-
-Formulas expose `@inputs` which contains the hash provided during initialization. This hash can be accessed outside of a formula via the `inputs` method on the formula object.
-
-## Outputs
-
-Formulas expose `@outputs` which is a hash that can be used to save outputs from the execution of a formula. This hash can be accessed outside of a formula via the `outputs` method on the formula object.
-
-## Logging
-
-Running a formula will automatically log the screens that it traversed and the final screen after completion to `log/formulas/formula_name.log` These logs will contain only the most recent execution.
 
 ## Commands
 
 #### Send string to terminal
 ```ruby
-send_keys(string, [count])      # send string to terminal 'count' times
+send_key(string, [count])      # send string to terminal 'count' times
+# aliased to send_keys
 ```
 
 #### Keyboard methods
@@ -68,51 +91,7 @@ f{1-24}([count])                # send function key 'count' times
 ```ruby
 value_at(row, column, length)   # get the string value at a given row and column
 screen_text                     # get current screen as a string
-print_screen                    # print current screen
-printable_screen_text           # get pretty-print version of screen text
-```
-
-#### Logging
-```ruby
-session_log                     # get the log of the session
-log(message)                    # log a message to the session log
-log_screen                      # log the current screen to the session log
-```
-
-## Examples
-### Example formula (login.rb) for a login workflow
-```ruby
-session 'hostname.com' do
-  send_keys 'USERNAME'
-  send_keys 'PASSWORD'
-  enter
-  @outputs[:success] = screen_text.include? 'SUCCESSFUL LOGIN'
-end
-```
-### Example of modularizing use of formulas (note: login.rb formula is pulled into this one - lookup.rb)
-```ruby
-require 'login'
-session 'hostname.com' do
-  login #login formula is invoked/run
-  send_keys 'MENU1'
-  enter
-  send_keys '02'
-  enter
-  send_keys inputs[:work_order_number]
-  enter
-  f5
-  outputs[:success] = screen_text.include?(inputs[:status])
-end
-```
-### Example RSpec test calling the formula
-```ruby
-context 'Given I am an Admin And I have a Completed work order' do
-  it 'When I lookup the work order Then the completed status is displayed'
-      lookup_formula = Antimony::Formula.new('lookup', {work_order_number: '12345', status: 'COMPLETED'})
-      lookup_formula.run
-      expect(lookup_formula.outputs[:success]).to be_true
-  end
-end
+output_screen                   # print current screen
 ```
 
 ## Authors
@@ -120,3 +99,4 @@ end
 * Adrienne Hisbrook https://github.com/ahisbrook
 * Lesley Dennison <ldennison@thoughtworks.com>
 * Ryan Rosenblum https://github.com/rrosenblum
+* Lance Howard https://github.com/lkhoward
