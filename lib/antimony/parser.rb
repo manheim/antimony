@@ -54,7 +54,6 @@ module Antimony
         @screen_buffer.each { |row| puts row.join }
         puts SCREEN_SEPARATOR
       end
-      log_screen
     end
 
     private
@@ -83,15 +82,6 @@ module Antimony
     def advance_row
       @row += 1
       @column = 0
-    end
-
-    def log_screen
-      return if screen_buffer_empty?
-      File.open('console.log', 'a') do |file |
-        file.puts SCREEN_SEPARATOR
-        @screen_buffer.each { |row| file.puts row.join }
-        file.puts SCREEN_SEPARATOR
-      end
     end
 
   end

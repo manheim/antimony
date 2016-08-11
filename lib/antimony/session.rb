@@ -38,6 +38,18 @@ module Antimony
       end
     end
 
+    def screen_text
+      text = ''
+      redraw_screen
+      @parser.screen_buffer.each { |row|  text << row.join }
+      text
+    end
+
+    def value_at(row, column, length)
+      redraw_screen
+      @parser.value_at(row, column, length)
+    end
+
     def close
       @connection.close if @connection
     end
